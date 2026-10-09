@@ -3,102 +3,339 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>COELOPHYSIS // Pre-order Drop</title>
+  <title>COELOPHYSIS — Official Store</title>
   <style>
-    .dov-wrapper { background: #09090b; color: #f2f2f2; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace; line-height: 1.2; overflow-x: hidden; }
-    .dov-hero { position: relative; height: 100vh; min-height: 550px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-    .dov-bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(12px) brightness(0.4) contrast(1.1); transform: scale(1.05); z-index: 1; }
-    .dov-glass-half { position: absolute; top: 0; right: 0; width: 50%; height: 100%; backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%); background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.02) 100%); border-left: 1px solid rgba(255,255,255,0.35); box-shadow: inset 4px 0 25px rgba(255,255,255,0.2), -15px 0 40px rgba(0,0,0,0.5); z-index: 2; pointer-events: none; }
-    .dov-hero-body { position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 16px; }
-    .dov-logo { font-size: clamp(3rem, 10vw, 8rem); font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; display: flex; user-select: none; }
-    .dov-logo .cutout { color: transparent; -webkit-text-stroke: 1.5px #f2f2f2; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.8)); }
-    .dov-logo .glass { background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.2) 40%, rgba(180,220,255,0.8) 75%, #ffffff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 6px 20px rgba(255,255,255,0.4)); }
-    .dov-runes-container { display: flex; gap: 20px; margin-top: 14px; }
-    .dov-rune-item { position: relative; font-size: 1.6rem; letter-spacing: 0.2em; cursor: pointer; transition: transform 0.2s, color 0.2s; }
-    .dov-rune-item:hover { transform: scale(1.2); color: #60a5fa; }
-    .dov-rune-item::after { content: attr(data-tooltip); position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%) translateY(4px); background: rgba(15, 15, 18, 0.95); border: 1px solid rgba(255, 255, 255, 0.2); color: #f2f2f2; padding: 6px 12px; font-size: 0.65rem; font-family: monospace; white-space: nowrap; border-radius: 4px; opacity: 0; visibility: hidden; transition: all 0.25s ease; pointer-events: none; box-shadow: 0 10px 25px rgba(0,0,0,0.8); z-index: 10; letter-spacing: 0.05em; }
-    .dov-rune-item:hover::after { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-    .dov-sub { font-family: monospace; font-size: 0.75rem; letter-spacing: 0.25em; color: #888; margin-top: 12px; }
-    .dov-btn { margin-top: 30px; padding: 10px 24px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); color: #f2f2f2; text-decoration: none; font-family: monospace; font-size: 0.75rem; letter-spacing: 0.15em; transition: all 0.2s; }
-    .dov-btn:hover { background: #f2f2f2; color: #09090b; }
-    .dov-content { max-width: 1100px; margin: 0 auto; padding: 60px 20px 30px; }
-    .dov-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-    .dov-card { display: flex; flex-direction: column; }
-    .dov-card .dov-slot { background: #121214; height: 480px; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 0.8rem; color: #444; border: 1px solid #1c1c1f; }
-    .dov-meta { display: flex; justify-content: space-between; font-family: monospace; font-size: 0.75rem; color: #888; margin-top: 12px; letter-spacing: 0.05em; }
-    .tg-order-btn { display: block; text-align: center; margin-top: 10px; padding: 10px; background: #1a1a1e; border: 1px solid #2d2d33; color: #f2f2f2; text-decoration: none; font-family: monospace; font-size: 0.75rem; letter-spacing: 0.1em; transition: all 0.2s; }
-    .tg-order-btn:hover { background: #f2f2f2; color: #09090b; border-color: #f2f2f2; }
-    .tg-order-btn.pre-order { border-color: rgba(250, 204, 21, 0.3); color: #facc15; }
-    .tg-order-btn.pre-order:hover { background: #facc15; color: #09090b; }
-    .dov-status { margin-top: 60px; padding: 24px; border: 1px solid #1c1c1f; font-family: monospace; font-size: 0.8rem; }
-    .status-line { display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid #1c1c1f; }
-    .tg-link { display: block; text-align: center; margin-top: 18px; padding: 12px; background: #f2f2f2; color: #09090b; text-decoration: none; font-weight: 700; letter-spacing: 0.05em; }
-    .tg-link:hover { opacity: 0.85; }
-    .dov-foot { display: flex; justify-content: space-between; font-family: monospace; font-size: 0.7rem; color: #555; margin-top: 60px; padding-top: 20px; border-top: 1px solid #141416; }
-    .dov-foot a { color: #777; text-decoration: none; }
+    :root {
+      --bg: #050505;
+      --text: #f3f4f6;
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-blur: blur(16px);
+      --accent: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HERO SECTION WITH VIDEO BACKGROUND */
+    .dov-hero {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px;
+      overflow: hidden;
+    }
+
+    .dov-bg-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.6) contrast(1.1);
+    }
+
+    /* HEADER & SPLIT LOGO */
+    .dov-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .dov-logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 0.3em;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .dov-logo span {
+      opacity: 0.4;
+      font-weight: 300;
+    }
+
+    /* LIQUID GLASS NAV / RUNES */
+    .dov-nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .rune-item {
+      position: relative;
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 8px 12px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .rune-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .rune-tooltip {
+      position: absolute;
+      bottom: -35px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--glass-border);
+      color: #fff;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s ease;
+    }
+
+    .rune-item:hover .rune-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* HERO CENTER TEXT */
+    .dov-hero-content {
+      z-index: 10;
+      max-width: 600px;
+    }
+
+    .dov-hero-content h1 {
+      font-size.clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .dov-hero-content p {
+      font-size: 1rem;
+      opacity: 0.7;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+    }
+
+    /* CATALOG SECTION */
+    .dov-catalog {
+      padding: 80px 40px;
+      background: var(--bg);
+    }
+
+    .dov-catalog-title {
+      font-size: 1.2rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    .dov-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    /* PRODUCT CARD */
+    .dov-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 16px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .dov-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .dov-slot {
+      width: 100%;
+      height: 360px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #111;
+      position: relative;
+    }
+
+    .dov-slot video, .dov-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .dov-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .dov-price {
+      font-family: monospace;
+      font-size: 0.95rem;
+      margin-top: 6px;
+      opacity: 0.8;
+    }
+
+    /* TELEGRAM ORDER BUTTON */
+    .tg-order-btn {
+      display: block;
+      width: 100%;
+      margin-top: 16px;
+      padding: 12px;
+      background: #fff;
+      color: #000;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      border-radius: 6px;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .tg-order-btn:hover {
+      background: #e0e0e0;
+    }
+
+    .tg-order-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 40px;
+      text-align: center;
+      font-size: 0.75rem;
+      opacity: 0.4;
+      letter-spacing: 0.1em;
+      border-top: 1px solid var(--glass-border);
+    }
+
     @media (max-width: 768px) {
-      .dov-glass-half { width: 100%; height: 50%; top: auto; bottom: 0; border-left: none; border-top: 1px solid rgba(255,255,255,0.35); }
-      .dov-logo { flex-direction: column; }
-      .dov-grid { grid-template-columns: 1fr; }
-      .dov-card .dov-slot { height: 360px; }
+      .dov-hero { padding: 20px; }
+      .dov-catalog { padding: 40px 20px; }
     }
   </style>
 </head>
 <body>
-<div class="dov-wrapper">
+
+  <!-- HERO SECTION -->
   <header class="dov-hero">
+    <!-- Фоновое видео (убедись, что файл promo.mp4 лежит рядом с index.html) -->
     <video class="dov-bg-video" autoplay muted loop playsinline>
       <source src="promo.mp4" type="video/mp4">
     </video>
-    <div class="dov-glass-half"></div>
-    <div class="dov-hero-body">
-      <div class="dov-logo">
-        <span class="cutout">COELO</span><span class="glass">PHYSIS</span>
+
+    <div class="dov-header">
+      <div class="dov-logo">COELO<span>PHYSIS</span></div>
+      <div class="dov-nav">
+        <div class="rune-item">
+          ᚛
+          <div class="rune-tooltip">ORIGIN</div>
+        </div>
+        <div class="rune-item">
+          ᚜
+          <div class="rune-tooltip">ARCHIVE</div>
+        </div>
+        <div class="rune-item">
+          ᚼ
+          <div class="rune-tooltip">SYSTEM</div>
+        </div>
       </div>
-      <div class="dov-runes-container">
-        <div class="dov-rune-item" data-tooltip="Феху (Fehu) — Богатство, созидание и материальная энергия">ᚠ</div>
-        <div class="dov-rune-item" data-tooltip="Райдо (Raido) — Путь, эволюция и движение вперед">ᚱ</div>
-        <div class="dov-rune-item" data-tooltip="Феху (Fehu) — Изобилие и первобытная сила предков">ᚠ</div>
-      </div>
-      <div class="dov-sub">AVIAN LINEAGE // PRE-ORDER DROP</div>
-      <a href="https://t.me/cphsshop" target="_blank" rel="noopener" class="dov-btn">ПЕРЕЙТИ В TELEGRAM @cphsshop</a>
+    </div>
+
+    <div class="dov-hero-content">
+      <h1>Liquid Brutalism</h1>
+      <p>Drop 01 / Engineered for the subterranean infrastructure.</p>
     </div>
   </header>
-  <section class="dov-content">
-    <div class="section-title" style="font-family: monospace; font-size: 0.85rem; color: #777; margin-bottom: 20px; letter-spacing: 0.1em;">// CURRENT DROP & PRE-ORDERS</div>
+
+  <!-- CATALOG SECTION -->
+  <section class="dov-catalog">
+    <div class="dov-catalog-title">Catalog // Available Drops</div>
+
     <div class="dov-grid">
+      
+      <!-- ТОВАР 1 -->
       <div class="dov-card">
-        <div class="dov-slot" style="background: url('https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1000') center/cover no-repeat;"></div>
-        <div class="dov-meta">
-          <span>COELO-TEE / 240G (WHITE)</span>
-          <span style="color: #4ade80;">IN STOCK</span>
+        <div class="dov-slot">
+          <!-- Вместо item1.mp4 можно поставить картинку item1.jpg -->
+          <video autoplay muted loop playsinline>
+            <source src="item1.mp4" type="video/mp4">
+          </video>
         </div>
-        <div style="font-family: monospace; font-size: 0.85rem; margin-top: 8px; font-weight: bold;">990 ₽</div>
-        <a href="https://t.me/cphsshop?text=Привет!%20Хочу%20заказать%20COELO-TEE%20White" target="_blank" rel="noopener" class="tg-order-btn">КУПИТЬ В TELEGRAM</a>
+        <div class="dov-meta">
+          <span>COELO-TEE / 240G</span>
+          <span style="color: #4ade80; font-size: 0.75rem;">IN STOCK</span>
+        </div>
+        <div class="dov-price">1 990 ₽</div>
+        <a href="https://t.me/cphsshop?text=Привет!%20Хочу%20заказать%20COELO-TEE%20240G" target="_blank" rel="noopener" class="tg-order-btn">
+          КУПИТЬ В TELEGRAM
+        </a>
       </div>
+
+      <!-- ТОВАР 2 -->
       <div class="dov-card">
-        <div class="dov-slot" style="background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1000') center/cover no-repeat;"></div>
-        <div class="dov-meta">
-          <span>PREHISTORIC RUNIC LONGSLEEVE</span>
-          <span style="color: #facc15;">PRE-ORDER</span>
+        <div class="dov-slot">
+          <!-- Вместо item2.mp4 можно поставить картинку item2.jpg -->
+          <video autoplay muted loop playsinline>
+            <source src="item2.mp4" type="video/mp4">
+          </video>
         </div>
-        <div style="font-family: monospace; font-size: 0.85rem; margin-top: 8px; font-weight: bold;">1 600 ₽</div>
-        <a href="https://t.me/cphsshop?text=Привет!%20Хочу%20оформить%20предзаказ%20на%20Prehistoric%20Runic%20Longsleeve" target="_blank" rel="noopener" class="tg-order-btn pre-order">ПРЕДЗАКАЗ ТУТ →</a>
+        <div class="dov-meta">
+          <span>PHYSIS HOODIE / HEAVY</span>
+          <span style="color: #4ade80; font-size: 0.75rem;">IN STOCK</span>
+        </div>
+        <div class="dov-price">4 900 ₽</div>
+        <a href="https://t.me/cphsshop?text=Привет!%20Хочу%20заказать%20PHYSIS%20HOODIE%20Heavy" target="_blank" rel="noopener" class="tg-order-btn">
+          КУПИТЬ В TELEGRAM
+        </a>
       </div>
+
     </div>
-    <div class="dov-status">
-      <div class="status-line">
-        <span>STATUS: PRE-ORDERS OPEN</span>
-        <span>SHIPPING WORLDWIDE / SPB</span>
-      </div>
-      <a href="https://t.me/cphsshop" target="_blank" rel="noopener" class="tg-link">ЗАДАТЬ ВОПРОС ИЛИ ОФОРМИТЬ ДОСТАВКУ → @cphsshop</a>
-    </div>
-    <footer class="dov-foot">
-      <span>COELOPHYSIS © 2023–2026</span>
-      <span>ST. PETERSBURG</span>
-      <a href="https://t.me/cphsshop" target="_blank" rel="noopener">@cphsshop</a>
-    </footer>
   </section>
-</div>
+
+  <footer>
+    COELOPHYSIS © 2026. ALL RIGHTS RESERVED.
+  </footer>
+
 </body>
 </html>
