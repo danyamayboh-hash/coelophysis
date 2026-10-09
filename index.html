@@ -269,6 +269,45 @@
             color: var(--bg-color);
         }
 
+        /* Стихийный футер */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 30px;
+            background: var(--card-bg);
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--muted-color);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-content a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-content a:hover {
+            color: var(--muted-color);
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -543,16 +582,17 @@
 
     <!-- Полноэкранное видео на первом экране -->
     <section class="hero-video-section">
-        <video src="drop_video.mp4" autoplay muted loop playsinline></video>
+        <video autoplay muted loop playsinline>
+            <source src="drop_video.mp4" type="video/mp4">
+            <source src="main.mp4" type="video/mp4">
+        </video>
         <div class="hero-overlay">Coelophysis // Drop 01</div>
     </section>
 
     <main>
         <div class="section-title">Current Drop // 2026</div>
         
-        <!-- Полный каталог товаров -->
         <div class="products-grid">
-            <!-- Футболка 1 -->
             <div class="product-card" onclick="openProductModal({
                 name: 'T-Shirt CPHS-01 // Vector',
                 priceNum: 4500,
@@ -575,7 +615,6 @@
                 </div>
             </div>
 
-            <!-- Футболка 2 -->
             <div class="product-card" onclick="openProductModal({
                 name: 'T-Shirt CPHS-02 // Apex',
                 priceNum: 4800,
@@ -598,7 +637,6 @@
                 </div>
             </div>
 
-            <!-- Лонгслив -->
             <div class="product-card" onclick="openProductModal({
                 name: 'Longsleeve CPHS-03 // Fossil',
                 priceNum: 6200,
@@ -621,7 +659,6 @@
                 </div>
             </div>
 
-            <!-- Худи -->
             <div class="product-card" onclick="openProductModal({
                 name: 'Hoodie CPHS-04 // Rune',
                 priceNum: 8900,
@@ -644,7 +681,6 @@
                 </div>
             </div>
 
-            <!-- Зип-худи -->
             <div class="product-card" onclick="openProductModal({
                 name: 'Zip-Hoodie CPHS-05 // Terminal',
                 priceNum: 10500,
@@ -668,14 +704,12 @@
             </div>
         </div>
 
-        <!-- Кастомный блок -->
         <div class="custom-block">
             <h3>Custom // Индивидуальная разработка</h3>
             <p>Возможна разработка уникального принта и создание вещи полностью под ваш запрос в фирменной стилистике и эстетике бренда CPHS. Стоимость индивидуальных проектов рассчитывается отдельно и превышает базовую линейку дропа.</p>
             <a href="https://t.me/cphsshop" target="_blank" class="custom-btn">Обсудить кастом в Telegram</a>
         </div>
 
-        <!-- Премиальные материалы -->
         <div class="info-block">
             <div class="info-col" style="max-width: 800px; margin: 0 auto; text-align: center;">
                 <h3>Премиальные материалы</h3>
@@ -685,7 +719,15 @@
         </div>
     </main>
 
-    <!-- Модальное окно товара -->
+    <!-- Футер сайта -->
+    <footer>
+        <div class="footer-content">
+            <span>Coelophysis // 2026</span>
+            <span>Санкт-Петербург // СПБ</span>
+            <a href="https://t.me/cphsshop" target="_blank">Telegram: @cphsshop</a>
+        </div>
+    </footer>
+
     <div class="modal" id="productModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeProductModal()">&times;</button>
@@ -726,7 +768,6 @@
         </div>
     </div>
 
-    <!-- Выезжающая нижняя панель корзины -->
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-drawer-header">
             <h3>Корзина</h3>
@@ -739,7 +780,6 @@
         </div>
     </div>
 
-    <!-- Модальное окно рун -->
     <div class="modal" id="runesModal">
         <div class="runes-desc" id="runesDescContent">
             <button class="modal-close" onclick="closeRunesModal()">&times;</button>
@@ -905,40 +945,6 @@
                 event.target.classList.remove('active');
             }
         }
-    </script><!-- Модальное окно рун -->
-    <div class="modal" id="runesModal">
-        <div class="runes-desc" id="runesDescContent">
-            <button class="modal-close" onclick="closeRunesModal()">&times;</button>
-        </div>
-    </div>
-
-    <!-- СЮДА ВСТАВЬ HTML-КОД ФУТЕРА -->
-    <footer>
-        <div class="footer-content">
-            <span>Coelophysis // 2026</span>
-            <span>Санкт-Петербург // СПБ</span>
-            <a href="https://t.me/cphsshop" target="_blank">Telegram: @cphsshop</a>
-        </div>
-    </footer>
-
-    <!-- Модальное окно рун -->
-    <div class="modal" id="runesModal">
-        <div class="runes-desc" id="runesDescContent">
-            <button class="modal-close" onclick="closeRunesModal()">&times;</button>
-        </div>
-    </div>
-
-    <!-- СЮДА ВСТАВЬ HTML-КОД ФУТЕРА -->
-    <footer>
-        <div class="footer-content">
-            <span>Coelophysis // 2026</span>
-            <span>Санкт-Петербург // СПБ</span>
-            <a href="https://t.me/cphsshop" target="_blank">Telegram: @cphsshop</a>
-        </div>
-    </footer>
-
-    <script>
-        let currentProduct = null;
-    <script>
+    </script>
 </body>
 </html>
