@@ -33,18 +33,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 50px;
+            padding: 20px 40px;
             border-bottom: 1px solid var(--border-color);
-            position: sticky;
+            position: fixed;
             top: 0;
-            background: rgba(8, 8, 8, 0.92);
+            left: 0;
+            width: 100%;
+            background: rgba(8, 8, 8, 0.85);
             backdrop-filter: blur(12px);
-            z-index: 100;
+            z-index: 1000;
         }
 
         .logo {
             font-weight: 900;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
         }
@@ -59,45 +61,31 @@
         .runes-nav {
             display: flex;
             gap: 20px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--muted-color);
         }
 
         .runes-nav span {
             cursor: pointer;
             transition: color 0.2s;
-            position: relative;
-        }
-
-        .runes-nav span::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -3px;
-            left: 0;
-            background-color: var(--accent-color);
-            transition: width 0.2s;
+            letter-spacing: 0.1em;
         }
 
         .runes-nav span:hover {
             color: var(--accent-color);
         }
 
-        .runes-nav span:hover::after {
-            width: 100%;
-        }
-
         .cart-trigger {
             background: transparent;
             border: 1px solid var(--border-color);
             color: var(--text-color);
-            padding: 10px 20px;
-            font-size: 0.85rem;
+            padding: 8px 16px;
+            font-size: 0.8rem;
             cursor: pointer;
             letter-spacing: 0.15em;
             transition: all 0.2s;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .cart-trigger:hover {
@@ -106,10 +94,44 @@
             color: var(--bg-color);
         }
 
+        /* Полноэкранное видео на первую страницу */
+        .hero-video-section {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+
+        .hero-video-section video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.85;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            z-index: 2;
+            color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
         main {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 50px 30px;
+            padding: 60px 30px;
         }
 
         .section-title {
@@ -120,30 +142,10 @@
             letter-spacing: 0.2em;
         }
 
-        /* Видео-секция с поддержкой реальных файлов */
-        .video-section {
-            width: 100%;
-            height: 550px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            margin-bottom: 80px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .video-section video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
             margin-bottom: 60px;
         }
 
@@ -161,10 +163,15 @@
 
         .product-image {
             width: 100%;
-            height: 420px;
+            height: 400px;
             background: #151515;
             overflow: hidden;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted-color);
+            font-size: 0.8rem;
         }
 
         .product-image img {
@@ -179,7 +186,7 @@
         }
 
         .product-info {
-            padding: 25px;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: baseline;
@@ -197,18 +204,17 @@
             color: var(--muted-color);
         }
 
-        /* Информационные блоки */
         .info-block, .custom-block {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 50px;
-            margin-top: 50px;
+            padding: 40px;
+            margin-top: 40px;
         }
 
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 40px;
         }
 
         @media (max-width: 768px) {
@@ -216,19 +222,17 @@
                 grid-template-columns: 1fr;
             }
             header {
-                padding: 20px;
-                flex-direction: column;
-                gap: 15px;
+                padding: 15px 20px;
             }
-            .video-section {
-                height: 320px;
+            .runes-nav {
+                display: none; /* скрываем на мобильных для экономии места */
             }
         }
 
         .info-col h3, .custom-block h3 {
             font-size: 1rem;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             letter-spacing: 0.15em;
         }
 
@@ -245,7 +249,7 @@
 
         .custom-block p {
             max-width: 700px;
-            margin: 0 auto 25px auto;
+            margin: 0 auto 20px auto;
         }
 
         .custom-btn {
@@ -253,7 +257,7 @@
             background: transparent;
             color: var(--text-color);
             border: 1px solid var(--border-color);
-            padding: 14px 28px;
+            padding: 12px 24px;
             text-decoration: none;
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -277,7 +281,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(8px);
-            z-index: 1000;
+            z-index: 2000;
             justify-content: center;
             align-items: center;
             padding: 20px;
@@ -291,7 +295,7 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             width: 100%;
-            max-width: 950px;
+            max-width: 900px;
             max-height: 90vh;
             overflow-y: auto;
             display: grid;
@@ -307,8 +311,8 @@
 
         .modal-close {
             position: absolute;
-            top: 20px;
-            right: 25px;
+            top: 15px;
+            right: 20px;
             background: none;
             border: none;
             color: var(--text-color);
@@ -323,7 +327,7 @@
         }
 
         .modal-gallery {
-            padding: 25px;
+            padding: 20px;
             background: #131313;
             display: flex;
             flex-direction: column;
@@ -332,7 +336,7 @@
 
         .modal-main-img {
             width: 100%;
-            height: 380px;
+            height: 350px;
             object-fit: cover;
             background: #1a1a1a;
         }
@@ -343,13 +347,12 @@
         }
 
         .modal-thumb {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             background: #1a1a1a;
             cursor: pointer;
             object-fit: cover;
             border: 1px solid var(--border-color);
-            transition: border-color 0.2s;
         }
 
         .modal-thumb.active {
@@ -357,35 +360,34 @@
         }
 
         .modal-details {
-            padding: 40px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
         }
 
         .modal-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 600;
-            letter-spacing: 0.05em;
         }
 
         .modal-price {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--muted-color);
         }
 
         .sizes-container {
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
         .size-btn {
             background: transparent;
             border: 1px solid var(--border-color);
             color: var(--text-color);
-            padding: 12px 18px;
+            padding: 10px 15px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.2s;
         }
 
@@ -396,7 +398,7 @@
         }
 
         .size-chart {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--muted-color);
             width: 100%;
             border-collapse: collapse;
@@ -404,7 +406,7 @@
 
         .size-chart th, .size-chart td {
             border: 1px solid var(--border-color);
-            padding: 8px 10px;
+            padding: 6px 8px;
             text-align: center;
         }
 
@@ -416,7 +418,7 @@
             background: var(--accent-color);
             color: var(--bg-color);
             border: none;
-            padding: 16px;
+            padding: 15px;
             font-weight: 600;
             text-transform: uppercase;
             cursor: pointer;
@@ -429,7 +431,7 @@
             opacity: 0.9;
         }
 
-        /* НИЖНЯЯ ПАНЕЛЬ КОРЗИНЫ (выезжает снизу) */
+        /* Выезжающая нижняя панель корзины */
         .cart-drawer {
             position: fixed;
             bottom: -100%;
@@ -437,9 +439,9 @@
             width: 100%;
             background: var(--card-bg);
             border-top: 1px solid var(--border-color);
-            z-index: 2000;
+            z-index: 3000;
             transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            padding: 40px;
+            padding: 35px;
             box-shadow: 0 -10px 40px rgba(0,0,0,0.8);
             max-height: 75vh;
             overflow-y: auto;
@@ -453,7 +455,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 15px;
         }
@@ -461,8 +463,8 @@
         .cart-items-list {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 12px;
+            margin-bottom: 20px;
             max-height: 250px;
             overflow-y: auto;
         }
@@ -471,13 +473,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px;
+            padding: 12px 15px;
             background: #141414;
             border: 1px solid var(--border-color);
         }
 
         .cart-item-info {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .cart-item-remove {
@@ -499,32 +501,33 @@
             align-items: center;
             border-top: 1px solid var(--border-color);
             padding-top: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .cart-total-text {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
         }
 
-        /* Руны модалка */
         .runes-desc {
-            padding: 40px;
-            max-width: 550px;
+            padding: 35px;
+            max-width: 500px;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             position: relative;
         }
 
         .runes-desc h3 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
             letter-spacing: 0.1em;
         }
 
         .runes-desc p {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--muted-color);
-            line-height: 1.8;
+            line-height: 1.7;
         }
     </style>
 </head>
@@ -533,21 +536,23 @@
     <header>
         <div class="logo">Coelophysis</div>
         <div class="nav-right">
+            <!-- Стильные рунические символы -->
             <div class="runes-nav">
-                <span onclick="openRunesModal('origin')">◈ ORIGIN</span>
-                <span onclick="openRunesModal('archive')">◈ ARCHIVE</span>
-                <span onclick="openRunesModal('system')">◈ SYSTEM</span>
+                <span onclick="openRunesModal('origin')">ᛟ ORIGIN</span>
+                <span onclick="openRunesModal('archive')">ᚱ ARCHIVE</span>
+                <span onclick="openRunesModal('system')">ᛋ SYSTEM</span>
             </div>
             <button class="cart-trigger" onclick="toggleCartDrawer()">Корзина (<span id="cartCount">0</span>)</button>
         </div>
     </header>
 
-    <main>
-        <!-- Видео-секция (просто укажи имя своего видео в src) -->
-        <div class="video-section">
-            <video src="video.mp4" autoplay muted loop playsinline poster="preview.jpg"></video>
-        </div>
+    <!-- Полноэкранное видео на первом экране -->
+    <section class="hero-video-section">
+        <video src="drop_video.mp4" autoplay muted loop playsinline></video>
+        <div class="hero-overlay">Coelophysis // Drop 01</div>
+    </section>
 
+    <main>
         <div class="section-title">Current Drop // 2026</div>
         
         <!-- Каталог товаров -->
@@ -556,7 +561,7 @@
                 name: 'T-Shirt CPHS-01 // Vector',
                 priceNum: 4500,
                 price: '4,500 RUB',
-                images: ['tshirt1_front.jpg', 'tshirt1_back.jpg'],
+                images: ['tshirt1_front.jpg', 'item1.jpg'],
                 measurements: {
                     'S': { length: '70', width: '54', sleeve: '22' },
                     'M': { length: '72', width: '56', sleeve: '23' },
@@ -565,7 +570,8 @@
                 }
             })">
                 <div class="product-image">
-                    <img src="tshirt1_front.jpg" alt="T-Shirt">
+                    <img src="tshirt1_front.jpg" alt="T-Shirt" onerror="this.style.display='none'">
+                    <span style="position:absolute;">[ T-Shirt 1 ]</span>
                 </div>
                 <div class="product-info">
                     <span class="product-name">T-Shirt CPHS-01 // Vector</span>
@@ -577,7 +583,7 @@
                 name: 'T-Shirt CPHS-02 // Apex',
                 priceNum: 4800,
                 price: '4,800 RUB',
-                images: ['tshirt2_front.jpg', 'tshirt2_back.jpg'],
+                images: ['item1.jpg', 'tshirt1_front.jpg'],
                 measurements: {
                     'S': { length: '70', width: '54', sleeve: '22' },
                     'M': { length: '72', width: '56', sleeve: '23' },
@@ -586,86 +592,24 @@
                 }
             })">
                 <div class="product-image">
-                    <img src="tshirt2_front.jpg" alt="T-Shirt 2">
+                    <img src="item1.jpg" alt="T-Shirt 2" onerror="this.style.display='none'">
+                    <span style="position:absolute;">[ T-Shirt 2 ]</span>
                 </div>
                 <div class="product-info">
                     <span class="product-name">T-Shirt CPHS-02 // Apex</span>
                     <span class="product-price">4,800 RUB</span>
                 </div>
             </div>
-
-            <div class="product-card" onclick="openProductModal({
-                name: 'Longsleeve CPHS-03 // Fossil',
-                priceNum: 6200,
-                price: '6,200 RUB',
-                images: ['long_front.jpg', 'long_back.jpg'],
-                measurements: {
-                    'S': { length: '71', width: '55', sleeve: '63' },
-                    'M': { length: '73', width: '57', sleeve: '64' },
-                    'L': { length: '75', width: '59', sleeve: '65' },
-                    'XL': { length: '77', width: '61', sleeve: '66' }
-                }
-            })">
-                <div class="product-image">
-                    <img src="long_front.jpg" alt="Longsleeve">
-                </div>
-                <div class="product-info">
-                    <span class="product-name">Longsleeve CPHS-03 // Fossil</span>
-                    <span class="product-price">6,200 RUB</span>
-                </div>
-            </div>
-
-            <div class="product-card" onclick="openProductModal({
-                name: 'Hoodie CPHS-04 // Rune',
-                priceNum: 8900,
-                price: '8,900 RUB',
-                images: ['hoodie_front.jpg', 'hoodie_back.jpg'],
-                measurements: {
-                    'S': { length: '68', width: '58', sleeve: '60' },
-                    'M': { length: '70', width: '60', sleeve: '61' },
-                    'L': { length: '72', width: '62', sleeve: '62' },
-                    'XL': { length: '74', width: '64', sleeve: '63' }
-                }
-            })">
-                <div class="product-image">
-                    <img src="hoodie_front.jpg" alt="Hoodie">
-                </div>
-                <div class="product-info">
-                    <span class="product-name">Hoodie CPHS-04 // Rune</span>
-                    <span class="product-price">8,900 RUB</span>
-                </div>
-            </div>
-
-            <div class="product-card" onclick="openProductModal({
-                name: 'Zip-Hoodie CPHS-05 // Terminal',
-                priceNum: 10500,
-                price: '10,500 RUB',
-                images: ['zip_front.jpg', 'zip_back.jpg'],
-                measurements: {
-                    'S': { length: '69', width: '59', sleeve: '61' },
-                    'M': { length: '71', width: '61', sleeve: '62' },
-                    'L': { length: '73', width: '63', sleeve: '63' },
-                    'XL': { length: '75', width: '65', sleeve: '64' }
-                }
-            })">
-                <div class="product-image">
-                    <img src="zip_front.jpg" alt="Zip-Hoodie">
-                </div>
-                <div class="product-info">
-                    <span class="product-name">Zip-Hoodie CPHS-05 // Terminal</span>
-                    <span class="product-price">10,500 RUB</span>
-                </div>
-            </div>
         </div>
 
-        <!-- Блок кастомных заказов -->
+        <!-- Кастомный блок -->
         <div class="custom-block">
             <h3>Custom // Индивидуальная разработка</h3>
             <p>Возможна разработка уникального принта и создание вещи полностью под ваш запрос в фирменной стилистике и эстетике бренда CPHS. Стоимость индивидуальных проектов рассчитывается отдельно и превышает базовую линейку дропа.</p>
             <a href="https://t.me/cphsshop" target="_blank" class="custom-btn">Обсудить кастом в Telegram</a>
         </div>
 
-        <!-- Нижний блок: Материалы -->
+        <!-- Премиальные материалы -->
         <div class="info-block">
             <div class="info-col" style="max-width: 800px; margin: 0 auto; text-align: center;">
                 <h3>Премиальные материалы</h3>
@@ -862,15 +806,15 @@
 
         const runesInfo = {
             origin: {
-                title: "◈ ORIGIN // Исток",
+                title: "ᛟ ORIGIN // Исток",
                 text: "Первичная концепция бренда, фундамент эстетики и отправная точка всех визуальных и материальных решений."
             },
             archive: {
-                title: "◈ ARCHIVE // Архив",
+                title: "ᚱ ARCHIVE // Архив",
                 text: "Каталог прошлых дропов, закрытых коллекций и концептуальных наработок, зафиксированных в цифровом пространстве."
             },
             system: {
-                title: "◈ SYSTEM // Система",
+                title: "ᛋ SYSTEM // Система",
                 text: "Технические параметры, спецификации производства, стандарты качества и внутренние протоколы бренда."
             }
         };
