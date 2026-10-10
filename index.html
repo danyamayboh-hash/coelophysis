@@ -917,19 +917,35 @@
                 alert('Корзина пуста!');
                 return;
             }
+
+            // Шаг А: Забираем то, что пользователь написал в новые поля ввода
+            const name = document.getElementById('orderName').value.trim();
+            const contact = document.getElementById('orderContact').value.trim();
+
+            // Шаг Б: Проверка — если поля пустые, выдаем предупреждение и не пускаем дальше
+            if (!name || !contact) {
+                alert('Пожалуйста, укажите ваше имя и контакт для связи!');
+                return;
+            }
             
+            // Шаг В: Формируем красивый текст сообщения для Telegram-беседы
             let text = '⚡ Новый заказ с сайта Coelophysis:\n\n';
+            text += `👤 Имя: ${name}\n`;
+            text += `📞 Связь: ${contact}\n\n`;
+            text += '📦 Состав заказа:\n';
+
             cart.forEach(item => {
                 text += `• ${item.name}\n  Размер: ${item.size} | ${item.price}\n\n`;
             });
+            
             const totalText = document.getElementById('cartTotalPrice').innerText;
             text += `💰 Итого: ${totalText}`;
 
-            // 1. Вставь сюда токен своего бота от @BotFather
+            // ⚠️ Вставь сюда данные своего бота и беседы:
             const BOT_TOKEN = '8725885962:AAHtPAsEc4oNHE3wmBMRzGS9JVqeu02eUUM'; 
-            // 2. Вставь сюда ID твоей беседы или личный ID (куда должны падать заказы)
             const CHAT_ID = '-1004345884476';
 
+            // Шаг Г: Отправка данных на сервера Telegram
             fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -944,6 +960,10 @@
                     cart = [];
                     updateCartUI();
                     toggleCartDrawer();
+                    
+                    // Очищаем поля ввода после успешного оформления заказа
+                    document.getElementById('orderName').value = '';
+                    document.getElementById('orderContact').value = '';
                 } else {
                     alert('Ошибка отправки. Пожалуйста, напишите нам в Telegram напрямую.');
                 }
