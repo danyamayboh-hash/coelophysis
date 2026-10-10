@@ -804,6 +804,40 @@
     </div>
 
     <script>
+        <div class="modal-gallery">
+        <img id="modalMainImg" src="" alt="Product">
+        <div id="modalThumbs" class="modal-thumbs"></div>
+    </div>
+
+    <div class="modal-info">
+        <h2 id="modalTitle"></h2>
+        <p id="modalPrice"></p>
+
+        <!-- Выбор размера -->
+        <div class="size-selector">
+            <button class="size-btn" onclick="selectSize('S')">S</button>
+            <button class="size-btn" onclick="selectSize('M')">M</button>
+            <button class="size-btn" onclick="selectSize('L')">L</button>
+            <button class="size-btn" onclick="selectSize('XL')">XL</button>
+        </div>
+
+        <!-- Таблица замеров -->
+        <table class="size-chart-table">
+            <thead>
+                <tr>
+                    <th>Size</th>
+                    <th>Length</th>
+                    <th>Width</th>
+                    <th>Sleeve</th>
+                </tr>
+            </thead>
+            <tbody id="modalSizeChartBody"></tbody>
+        </table>
+
+        <button class="add-to-cart-btn" onclick="addToCartFromModal()">Добавить в корзину</button>
+    </div>
+</div>
+        
         btn.removeAttribute('disabled');
             btn.style.opacity = '1';
             btn.style.cursor = 'pointer';
