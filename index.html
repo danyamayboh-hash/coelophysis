@@ -548,7 +548,7 @@ sans-serif;
  .rune-dropdown-inner b {
  color: var(--text-color);
  }
- @media (hover: hover) {
+ @media (hover: hover) and (pointer: fine) and (min-width: 769px) {
  .rune-item:hover .rune-dropdown {
  display: block;
  }
@@ -1029,7 +1029,8 @@ function validateOrderForm() {
 function openRunesModal(key) {
  // на компьютере открывается по наведению, модалка нужна только для тачскринов
 
- if (window.matchMedia('(hover: hover)').matches) return;
+ if (window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 769px)').matches)
+return;
  const data = RUNES_TEXT[key];
  if (!data) return;
  document.getElementById('runesDescContent').innerHTML =
