@@ -7,16 +7,20 @@
     <style>
         :root {
             --bg-color: #080808;
-            --card-bg: #121212;
-            --text-color: #ffffff;
-            --text-muted: #888888;
-            --border-color: #222222;
+            --text-color: #f2f2f2;
+            --muted-color: #777777;
+            --accent-color: #ffffff;
+            --border-color: #1f1f1f;
+            --card-bg: #111111;
+            --hover-border: #444444;
         }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -24,6 +28,7 @@
             letter-spacing: 0.06em;
             line-height: 1.6;
         }
+
         header {
             display: flex;
             justify-content: space-between;
@@ -36,309 +41,529 @@
             width: 100%;
             background: rgba(8, 8, 8, 0.85);
             backdrop-filter: blur(12px);
-            z-index: 100;
-        }
-        .logo {
-            font-weight: 700;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            cursor: pointer;
-        }
-        .nav-right {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        .runes-nav span {
-            cursor: pointer;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            transition: color 0.2s;
-            margin-right: 15px;
-        }
-        .runes-nav span:hover {
-            color: #fff;
-        }
-        .cart-trigger {
-            cursor: pointer;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 8px 16px;
-            color: var(--text-color);
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            transition: 0.2s;
-        }
-        .cart-trigger:hover {
-            border-color: #555;
+            z-index: 1000;
         }
 
-        /* Hero Video Section */
-        .hero-video-sec {
-            position: relative;
+        .logo {
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .runes-nav {
+            display: flex;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: var(--muted-color);
+        }
+
+        .runes-nav span {
+            cursor: pointer;
+            transition: color 0.2s;
+            letter-spacing: 0.1em;
+        }
+
+        .runes-nav span:hover {
+            color: var(--accent-color);
+        }
+
+        .cart-trigger {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            letter-spacing: 0.15em;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .cart-trigger:hover {
+            border-color: var(--accent-color);
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .hero-video-section {
             width: 100%;
-            height: 80vh;
+            height: 100vh;
+            position: relative;
             overflow: hidden;
-            background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: #000;
         }
-        .hero-video-sec video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
+
+        .hero-video-section video {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            opacity: 0.5;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.85;
         }
-        .hero-content {
-            position: relative;
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
             z-index: 2;
-            text-align: center;
-        }
-        .hero-content h1 {
-            font-size: 2.5rem;
+            color: var(--text-color);
+            text-transform: uppercase;
             letter-spacing: 0.2em;
-            margin-bottom: 10px;
+            font-size: 0.85rem;
+            opacity: 0.7;
         }
 
         main {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 40px 20px 80px 20px;
+            padding: 60px 30px;
         }
+
+        .section-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 25px;
+            letter-spacing: 0.2em;
+        }
+
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
+            margin-bottom: 60px;
         }
+
         .product-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             cursor: pointer;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: border-color 0.3s, transform 0.3s;
         }
+
         .product-card:hover {
+            border-color: var(--hover-border);
             transform: translateY(-4px);
-            border-color: #444;
         }
+
         .product-image {
-            position: relative;
             width: 100%;
             height: 400px;
+            background: #151515;
             overflow: hidden;
-            background: #111;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted-color);
+            font-size: 0.8rem;
         }
+
         .product-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s;
         }
+
         .product-card:hover .product-image img {
             transform: scale(1.03);
         }
-        .product-image span {
-            position: absolute;
-            bottom: 15px;
-            left: 15px;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            background: rgba(0,0,0,0.6);
-            padding: 4px 8px;
-        }
+
         .product-info {
             padding: 20px;
             display: flex;
-            flex-direction: column;
-            gap: 5px;
+            justify-content: space-between;
+            align-items: baseline;
+            border-top: 1px solid var(--border-color);
         }
+
         .product-name {
             font-size: 0.95rem;
             font-weight: 500;
-        }
-        .product-price {
-            font-size: 0.9rem;
-            color: var(--text-muted);
+            letter-spacing: 0.08em;
         }
 
-        /* Modal */
+        .product-price {
+            font-size: 0.95rem;
+            color: var(--muted-color);
+        }
+
+        .info-block, .custom-block {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            header {
+                padding: 15px 20px;
+            }
+            .runes-nav {
+                display: none;
+            }
+        }
+
+        .info-col h3, .custom-block h3 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 0.15em;
+        }
+
+        .info-col p, .custom-block p {
+            font-size: 0.9rem;
+            color: var(--muted-color);
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .custom-block {
+            text-align: center;
+        }
+
+        .custom-block p {
+            max-width: 700px;
+            margin: 0 auto 20px auto;
+        }
+
+        .custom-btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 12px 24px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: all 0.2s;
+        }
+
+        .custom-btn:hover {
+            border-color: var(--accent-color);
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* Стихийный футер */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 30px;
+            background: var(--card-bg);
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--muted-color);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-content a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-content a:hover {
+            color: var(--muted-color);
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
         .modal {
             display: none;
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(8px);
-            z-index: 1000;
+            z-index: 2000;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
+
         .modal.active {
             display: flex;
         }
+
         .modal-content {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             width: 100%;
             max-width: 900px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            position: relative;
             max-height: 90vh;
             overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            position: relative;
         }
-        @media(max-width: 768px) {
+
+        @media (max-width: 768px) {
             .modal-content {
                 grid-template-columns: 1fr;
             }
         }
-        .close-btn {
+
+        .modal-close {
             position: absolute;
             top: 15px;
             right: 20px;
-            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.8rem;
             cursor: pointer;
             z-index: 10;
-            color: var(--text-muted);
+            transition: color 0.2s;
         }
-        .close-btn:hover { color: #fff; }
+
+        .modal-close:hover {
+            color: var(--muted-color);
+        }
+
         .modal-gallery {
             padding: 20px;
+            background: #131313;
             display: flex;
             flex-direction: column;
             gap: 15px;
-            background: #0d0d0d;
         }
-        #modalMainImg {
+
+        .modal-main-img {
             width: 100%;
             height: 350px;
             object-fit: cover;
+            background: #1a1a1a;
         }
+
         .modal-thumbs {
             display: flex;
             gap: 10px;
         }
+
         .modal-thumb {
             width: 60px;
             height: 60px;
-            object-fit: cover;
+            background: #1a1a1a;
             cursor: pointer;
-            opacity: 0.6;
+            object-fit: cover;
             border: 1px solid var(--border-color);
         }
-        .modal-thumb.active { opacity: 1; border-color: #fff; }
-        .modal-info {
+
+        .modal-thumb.active {
+            border-color: var(--accent-color);
+        }
+
+        .modal-details {
             padding: 30px;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-        .modal-info h2 { font-size: 1.3rem; font-weight: 600; }
-        .modal-info p { color: var(--text-muted); font-size: 1.1rem; }
-        .size-selector {
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .modal-price {
+            font-size: 1.2rem;
+            color: var(--muted-color);
+        }
+
+        .sizes-container {
             display: flex;
             gap: 10px;
         }
+
         .size-btn {
             background: transparent;
             border: 1px solid var(--border-color);
-            color: #fff;
-            padding: 8px 16px;
+            color: var(--text-color);
+            padding: 10px 15px;
             cursor: pointer;
-            font-family: inherit;
+            font-size: 0.85rem;
+            transition: all 0.2s;
         }
-        .size-btn.active {
-            border-color: #fff;
-            background: #fff;
-            color: #000;
+
+        .size-btn.active, .size-btn:hover {
+            border-color: var(--accent-color);
+            background: var(--accent-color);
+            color: var(--bg-color);
         }
-        .size-chart-table {
+
+        .size-chart {
+            font-size: 0.8rem;
+            color: var(--muted-color);
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.85rem;
-            margin-top: 10px;
         }
-        .size-chart-table th, .size-chart-table td {
+
+        .size-chart th, .size-chart td {
             border: 1px solid var(--border-color);
-            padding: 8px;
+            padding: 6px 8px;
             text-align: center;
         }
-        .size-chart-table th { color: var(--text-muted); }
-        .add-to-cart-btn {
-            background: #fff;
-            color: #000;
-            border: none;
-            padding: 14px;
-            text-transform: uppercase;
-            font-weight: 600;
-            cursor: pointer;
-            letter-spacing: 0.1em;
-            margin-top: auto;
-        }
-        .add-to-cart-btn:hover { background: #e0e0e0; }
 
-        /* Cart Drawer (Выезжает СНИЗУ) */
+        .size-chart th {
+            color: var(--text-color);
+        }
+
+        .action-btn {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 0.15em;
+            margin-top: auto;
+            transition: opacity 0.2s;
+        }
+
+        .action-btn:hover {
+            opacity: 0.9;
+        }
+
         .cart-drawer {
             position: fixed;
             bottom: -100%;
             left: 0;
             width: 100%;
-            max-height: 85vh;
             background: var(--card-bg);
             border-top: 1px solid var(--border-color);
-            z-index: 1100;
+            z-index: 3000;
             transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            padding: 30px;
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
+            padding: 35px;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.8);
+            max-height: 75vh;
+            overflow-y: auto;
         }
-        .cart-drawer.active { bottom: 0; }
-        .cart-header {
+
+        .cart-drawer.active {
+            bottom: 0;
+        }
+
+        .cart-drawer-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 20px;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 20px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
+            padding-bottom: 15px;
         }
-        .cart-items {
-            flex: 1;
+
+        .cart-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+            max-height: 250px;
             overflow-y: auto;
-            padding: 20px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-height: 40vh;
         }
-        .cart-footer {
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .cart-total {
+
+        .cart-item {
             display: flex;
             justify-content: space-between;
-            font-weight: 600;
-            font-size: 1.1rem;
+            align-items: center;
+            padding: 12px 15px;
+            background: #141414;
+            border: 1px solid var(--border-color);
         }
-        footer {
-            text-align: center;
-            padding: 40px;
+
+        .cart-item-info {
+            font-size: 0.9rem;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--muted-color);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+
+        .cart-item-remove:hover {
+            color: #ff4444;
+        }
+
+        .cart-drawer-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.85rem;
+            padding-top: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
-        footer a { color: #fff; text-decoration: none; }
+
+        .cart-total-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .runes-desc {
+            padding: 35px;
+            max-width: 500px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .runes-desc h3 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .runes-desc p {
+            font-size: 0.9rem;
+            color: var(--muted-color);
+            line-height: 1.7;
+        }
     </style>
 </head>
 <body>
@@ -347,356 +572,471 @@
         <div class="logo">Coelophysis</div>
         <div class="nav-right">
             <div class="runes-nav">
-                <span>[ ABOUT ]</span>
-                <span>[ ORIGIN ]</span>
-                <span>[ ARCHIVE ]</span>
+                <span onclick="openRunesModal('about')">ᚠ ABOUT</span>
+                <span onclick="openRunesModal('origin')">ᛟ ORIGIN</span>
+                <span onclick="openRunesModal('archive')">ᚱ ARCHIVE</span>
+                <span onclick="openRunesModal('system')">ᛋ SYSTEM</span>
             </div>
-            <div class="cart-trigger" onclick="toggleCartDrawer()">Корзина (<span id="cartCount">0</span>)</div>
+            <button class="cart-trigger" onclick="toggleCartDrawer()">Корзина (<span id="cartCount">0</span>)</button>
         </div>
     </header>
 
-    <!-- Секция с видео -->
-    <section class="hero-video-sec">
+    <!-- Полноэкранное видео на первом экране -->
+    <section class="hero-video-section">
         <video autoplay muted loop playsinline>
-            <source src="background.mp4" type="video/mp4">
+            <source src="drop_video.mp4" type="video/mp4">
+            <source src="main.mp4" type="video/mp4">
         </video>
-        <div class="hero-content">
-            <h1>COELOPHYSIS</h1>
-            <p style="color: var(--text-muted);">PALEO-BRUTALISM // DROP 01</p>
-        </div>
+        <div class="hero-overlay">Coelophysis // Drop 01</div>
     </section>
 
     <main>
+        <div class="section-title">Current Drop // 2026</div>
+        
         <div class="products-grid">
-            <!-- Товар 1 -->
-            <div class="product-card" 
-                 data-name="T-Shirt CPHS-01 Vector" 
-                 data-price-num="2700" 
-                 data-price="2,700 RUB" 
-                 data-images="ts1_front_v3.jpg" 
-                 onclick="openProductFromCard(this)">
+            <div class="product-card" onclick="openProductModal({
+                name: 'T-Shirt CPHS-01 // Vector',
+                priceNum: 2700,
+                price: '2,700 RUB',
+                images: ['tshirt1_front_v3.jpg', 'item1.jpg'],
+                measurements: {
+                    'S': { length: '70', width: '54', sleeve: '22' },
+                    'M': { length: '72', width: '56', sleeve: '23' },
+                    'L': { length: '74', width: '58', sleeve: '24' },
+                    'XL': { length: '76', width: '60', sleeve: '25' }
+                }
+            })">
                 <div class="product-image">
-                    <img src="ts1_front_v3.jpg" alt="T-Shirt 01" onerror="this.style.display='none'">
-                    <span>[ T-Shirt 01 ]</span>
+                    <img src="tshirt1_front_v3.jpg" alt="T-Shirt" onerror="this.style.display='none'">
+                    <span style="position:absolute;">[ T-Shirt 1 ]</span>
                 </div>
                 <div class="product-info">
-                    <span class="product-name">T-Shirt CPHS-01 Vector</span>
+                    <span class="product-name">T-Shirt CPHS-01 // Vector</span>
                     <span class="product-price">2,700 RUB</span>
                 </div>
             </div>
 
-            <!-- Товар 2 -->
-            <div class="product-card" 
-                 data-name="Long Fossil" 
-                 data-price-num="3200" 
-                 data-price="3,200 RUB" 
-                 data-images="long_front.jpg,long_back.jpg" 
-                 onclick="openProductFromCard(this)">
+            <div class="product-card" onclick="openProductModal({
+                name: 'T-Shirt CPHS-02 // Apex',
+                priceNum: 2800,
+                price: '2,800 RUB',
+                images: ['tshirt2_front_v2.jpg', 'tshirt1_front.jpg'],
+                measurements: {
+                    'S': { length: '70', width: '54', sleeve: '22' },
+                    'M': { length: '72', width: '56', sleeve: '23' },
+                    'L': { length: '74', width: '58', sleeve: '24' },
+                    'XL': { length: '76', width: '60', sleeve: '25' }
+                }
+            })">
                 <div class="product-image">
-                    <img src="long_front.jpg" alt="Long Fossil" onerror="this.style.display='none'">
-                    <span>[ Long Fossil ]</span>
+                    <img src="tshirt2_front_v2.jpg" alt="T-Shirt 2" onerror="this.style.display='none'">
+                    <span style="position:absolute;">[ T-Shirt 2 ]</span>
                 </div>
                 <div class="product-info">
-                    <span class="product-name">Long Fossil</span>
+                    <span class="product-name">T-Shirt CPHS-02 // Apex</span>
+                    <span class="product-price">2,800 RUB</span>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="openProductModal({
+                name: 'Longsleeve CPHS-03 // Fossil',
+                priceNum: 3200,
+                price: '3,200 RUB',
+                images: ['long_frontv2.jpg', 'long_back.jpg'],
+                measurements: {
+                    'S': { length: '71', width: '55', sleeve: '63' },
+                    'M': { length: '73', width: '57', sleeve: '64' },
+                    'L': { length: '75', width: '59', sleeve: '65' },
+                    'XL': { length: '77', width: '61', sleeve: '66' }
+                }
+            })">
+                <div class="product-image">
+                    <img src="long_frontv2.jpg" alt="Longsleeve" onerror="this.style.display='none'">
+                    <span style="position:absolute;">[ Longsleeve ]</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-name">Longsleeve CPHS-03 // Fossil</span>
                     <span class="product-price">3,200 RUB</span>
                 </div>
             </div>
 
-            <!-- Товар 3 -->
-            <div class="product-card" 
-                 data-name="Hoodie Obsidian" 
-                 data-price-num="8900" 
-                 data-price="8,900 RUB" 
-                 data-images="hoodie2_front.jpg,hoodie2_back.jpg" 
-                 onclick="openProductFromCard(this)">
+            <div class="product-card" onclick="openProductModal({
+                name: 'Hoodie CPHS-04 // Rune',
+                priceNum: 8900,
+                price: '8,900 RUB',
+                images: ['hoodie_front.jpg', 'hoodie_back.jpg'],
+                measurements: {
+                    'S': { length: '68', width: '58', sleeve: '60' },
+                    'M': { length: '70', width: '60', sleeve: '61' },
+                    'L': { length: '72', width: '62', sleeve: '62' },
+                    'XL': { length: '74', width: '64', sleeve: '63' }
+                }
+            })">
                 <div class="product-image">
-                    <img src="hoodie2_front.jpg" alt="Hoodie Obsidian" onerror="this.style.display='none'">
-                    <span>[ Hoodie Obsidian ]</span>
+                    <img src="hoodie_front.jpg" alt="Hoodie" onerror="this.style.display='none'">
+                    <span style="position:absolute;">[ Hoodie ]</span>
                 </div>
                 <div class="product-info">
-                    <span class="product-name">Hoodie Obsidian</span>
+                    <span class="product-name">Hoodie CPHS-04 // Rune</span>
                     <span class="product-price">8,900 RUB</span>
                 </div>
             </div>
 
-            <!-- Товар 4 -->
-            <div class="product-card" 
-                 data-name="Zip-Hoodie Terminal" 
-                 data-price-num="10500" 
-                 data-price="10,500 RUB" 
-                 data-images="zip1_front.jpg,zip1_back.jpg" 
-                 onclick="openProductFromCard(this)">
+            <div class="product-card" onclick="openProductModal({
+                name: 'Zip-Hoodie CPHS-05 // Terminal',
+                priceNum: 10500,
+                price: '10,500 RUB',
+                images: ['zip_front.jpg', 'zip_back.jpg'],
+                measurements: {
+                    'S': { length: '69', width: '59', sleeve: '61' },
+                    'M': { length: '71', width: '61', sleeve: '62' },
+                    'L': { length: '73', width: '63', sleeve: '63' },
+                    'XL': { length: '75', width: '65', sleeve: '64' }
+                }
+            })">
                 <div class="product-image">
-                    <img src="zip1_front.jpg" alt="Zip-Hoodie Terminal" onerror="this.style.display='none'">
-                    <span>[ Zip-Hoodie Terminal ]</span>
+                    <img src="zip_front.jpg" alt="Zip-Hoodie" onerror="this.style.display='none'">
+                    <span style="position:absolute;">[ Zip-Hoodie ]</span>
                 </div>
                 <div class="product-info">
-                    <span class="product-name">Zip-Hoodie Terminal</span>
+                    <span class="product-name">Zip-Hoodie CPHS-05 // Terminal</span>
                     <span class="product-price">10,500 RUB</span>
                 </div>
             </div>
+
+            <div class="product-card" onclick="openProductModal({
+                name: 'Hoodie CPHS-06 // Obsidian',
+                priceNum: 9200,
+                price: '9,200 RUB',
+                images: ['hoodie2_front.jpg', 'hoodie2_back.jpg'],
+                measurements: {
+                    'S': { length: '68', width: '58', sleeve: '60' },
+                    'M': { length: '70', width: '60', sleeve: '61' },
+                    'L': { length: '72', width: '62', sleeve: '62' },
+                    'XL': { length: '74', width: '64', sleeve: '63' }
+                }
+            })">
+                <div class="product-image">
+                    <img src="hoodie2_front.jpg" alt="Hoodie 06" onerror="this.style.display='none'">
+                    <span style="position:absolute;">[ Hoodie 06 ]</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-name">Hoodie CPHS-06 // Obsidian</span>
+                    <span class="product-price">9,200 RUB</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="custom-block">
+            <h3>Custom // Индивидуальная разработка</h3>
+            <p>Возможна разработка уникального принта и создание вещи полностью под ваш запрос в фирменной стилистике и эстетике бренда CPHS. Стоимость индивидуальных проектов рассчитывается отдельно и превышает базовую линейку дропа.</p>
+            <a href="https://t.me/cphsshop" target="_blank" class="custom-btn">Обсудить кастом в Telegram</a>
         </div>
     </main>
 
+    <!-- Футер сайта -->
     <footer>
-        <p>© 2026 Coelophysis // Paleo-Brutalism. <a href="https://t.me/cphsshop" target="_blank">Telegram Channel</a></p>
+        <div class="footer-content">
+            <span>Coelophysis // 2026</span>
+            <span>Санкт-Петербург // СПБ</span>
+            <a href="https://t.me/cphsshop" target="_blank">Telegram: @cphsshop</a>
+        </div>
     </footer>
 
-    <!-- Модальное окно товара -->
-    <div id="productModal" class="modal">
+    <div class="modal" id="productModal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeProductModal()">&times;</span>
+            <button class="modal-close" onclick="closeProductModal()">&times;</button>
             <div class="modal-gallery">
-                <img id="modalMainImg" src="" alt="Product">
-                <div id="modalThumbs" class="modal-thumbs"></div>
+                <img class="modal-main-img" id="modalMainImg" src="" alt="">
+                <div class="modal-thumbs" id="modalThumbs"></div>
             </div>
-            <div class="modal-info">
-                <h2 id="modalTitle"></h2>
-                <p id="modalPrice"></p>
-                <div class="size-selector">
-                    <button class="size-btn" onclick="selectSize('S')">S</button>
-                    <button class="size-btn" onclick="selectSize('M')">M</button>
-                    <button class="size-btn" onclick="selectSize('L')">L</button>
-                    <button class="size-btn" onclick="selectSize('XL')">XL</button>
+            <div class="modal-details">
+                <div>
+                    <div class="modal-title" id="modalTitle"></div>
+                    <div class="modal-price" id="modalPrice"></div>
                 </div>
-                <table class="size-chart-table">
-                    <thead>
-                        <tr>
-                            <th>Size</th>
-                            <th>Length</th>
-                            <th>Width</th>
-                            <th>Sleeve</th>
-                        </tr>
-                    </thead>
-                    <tbody id="modalSizeChartBody"></tbody>
-                </table>
-                <button class="add-to-cart-btn" onclick="addToCartFromModal()">Добавить в корзину</button>
+                <div>
+                    <div class="section-title" style="margin-bottom: 10px;">Выберите размер</div>
+                    <div class="sizes-container" id="sizesContainer">
+                        <button class="size-btn" onclick="selectSize('S')">S</button>
+                        <button class="size-btn active" onclick="selectSize('M')">M</button>
+                        <button class="size-btn" onclick="selectSize('L')">L</button>
+                        <button class="size-btn" onclick="selectSize('XL')">XL</button>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-title" style="margin-bottom: 5px;">Замеры (см)</div>
+                    <table class="size-chart">
+                        <thead>
+                            <tr>
+                                <th>Размер</th>
+                                <th>Длина по спине</th>
+                                <th>Ширина</th>
+                                <th>Длина рукава</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modalSizeChartBody"></tbody>
+                    </table>
+                </div>
+                <button class="action-btn" onclick="addToCartFromModal()">Добавить в корзину</button>
             </div>
         </div>
     </div>
 
-    <!-- Выезжающая корзина (снизу) -->
-    <div id="cartDrawer" class="cart-drawer">
-        <div class="cart-header">
-            <span>Корзина</span>
-            <span onclick="toggleCartDrawer()" style="cursor:pointer; font-size:1.4rem;">&times;</span>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-header">
+            <h3>Корзина</h3>
+            <button class="modal-close" style="position:static;" onclick="toggleCartDrawer()">&times;</button>
         </div>
-        <div class="cart-items" id="cartItems">
-            <!-- Сюда падают товары -->
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Итого:</span>
-                <span id="cartTotalPrice">0 RUB</span>
-            </div>
-            
-            <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div class="cart-items-list" id="cartItemsList"></div>
+        <div class="cart-drawer-footer">
+            <span class="cart-total-text">Итого: <span id="cartTotalPrice">0 RUB</span></span>
+            <div style="margin: 15px 0; display: flex; flex-direction: column; gap: 10px; flex: 1 1 260px;">
                 <input type="text" id="orderName" placeholder="Ваше имя" oninput="validateOrderForm()" style="background: #111; border: 1px solid #333; color: #fff; padding: 10px; font-family: inherit; outline: none;">
                 <input type="text" id="orderContact" placeholder="Телефон или Telegram (@username)" oninput="validateOrderForm()" style="background: #111; border: 1px solid #333; color: #fff; padding: 10px; font-family: inherit; outline: none;">
             </div>
+            <button class="action-btn" id="checkoutBtn" style="margin-top:0; padding: 12px 24px;" onclick="checkoutTelegram()">Оформить в Telegram</button>
+        </div>
+    </div>
 
-            <button id="checkoutBtn" style="padding: 14px; background: #fff; color: #000; border: none; text-transform: uppercase; font-weight: 600; cursor: not-allowed; opacity: 0.5; letter-spacing: 0.1em;" onclick="checkoutTelegram()" disabled>Оформить в Telegram</button>
+    <div class="modal" id="runesModal">
+        <div class="runes-desc" id="runesDescContent">
+            <button class="modal-close" onclick="closeRunesModal()">&times;</button>
         </div>
     </div>
 
     <script>
-        let currentProduct = null;
-        let selectedSize = 'M';
-        let cart = [];
+let cart = [];
+let currentProduct = null;
+let selectedSize = 'M';
 
-        function openProductFromCard(card) {
-            const name = card.getAttribute('data-name');
-            const priceNum = Number(card.getAttribute('data-price-num'));
-            const price = card.getAttribute('data-price');
-            const images = card.getAttribute('data-images').split(',');
+const RUNES_TEXT = {
+    about:   { title: 'ᚠ ABOUT',   text: 'Coelophysis — независимый бренд одежды из Санкт-Петербурга. Минимализм, графика и эстетика ранних хищников.' },
+    origin:  { title: 'ᛟ ORIGIN',  text: 'Название взято у одного из древнейших динозавров — быстрого, лёгкого и выносливого. Таким же мы хотим видеть и наш стиль.' },
+    archive: { title: 'ᚱ ARCHIVE', text: 'Drop 01 — первая коллекция бренда. Лимитированный тираж, каждая вещь нумеруется индексом CPHS.' },
+    system:  { title: 'ᛋ SYSTEM',  text: 'Заказ оформляется через сайт и подтверждается в Telegram. Замеры указаны в сантиметрах, допуск ±1–2 см.' }
+};
 
-            const measurements = {
-                'S': { length: '68', width: '58', sleeve: '60' },
-                'M': { length: '70', width: '60', sleeve: '61' },
-                'L': { length: '72', width: '62', sleeve: '62' },
-                'XL': { length: '74', width: '64', sleeve: '63' }
-            };
+function openProductModal(product) {
+    currentProduct = product;
+    selectedSize = 'M';
 
-            openProductModal({
-                name: name,
-                priceNum: priceNum,
-                price: price,
-                images: images,
-                measurements: measurements
-            });
-        }
+    document.getElementById('modalTitle').textContent = product.name;
+    document.getElementById('modalPrice').textContent = product.price;
 
-        function openProductModal(product) {
-            currentProduct = product;
-            document.getElementById('modalTitle').innerText = product.name;
-            document.getElementById('modalPrice').innerText = product.price;
-            
-            const mainImg = document.getElementById('modalMainImg');
-            const thumbsContainer = document.getElementById('modalThumbs');
-            mainImg.src = product.images[0];
-            thumbsContainer.innerHTML = '';
-            
-            product.images.forEach((imgSrc, index) => {
-                const thumb = document.createElement('img');
-                thumb.src = imgSrc;
-                thumb.className = `modal-thumb ${index === 0 ? 'active' : ''}`;
-                thumb.onclick = () => {
-                    mainImg.src = imgSrc;
-                    document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
-                    thumb.classList.add('active');
-                };
-                thumbsContainer.appendChild(thumb);
-            });
+    const mainImg = document.getElementById('modalMainImg');
+    const thumbs = document.getElementById('modalThumbs');
+    thumbs.innerHTML = '';
 
-            selectSize('M');
-            document.getElementById('productModal').classList.add('active');
-        }
+    setMainImage(product.images[0]);
 
-        function closeProductModal() {
-            document.getElementById('productModal').classList.remove('active');
-        }
+    product.images.forEach((src, i) => {
+        const t = document.createElement('img');
+        t.src = src;
+        t.className = 'modal-thumb' + (i === 0 ? ' active' : '');
+        t.alt = '';
+        t.onerror = () => { t.style.visibility = 'hidden'; };
+        t.onclick = () => {
+            setMainImage(src);
+            thumbs.querySelectorAll('.modal-thumb').forEach(el => el.classList.remove('active'));
+            t.classList.add('active');
+        };
+        thumbs.appendChild(t);
+    });
 
-        function selectSize(size) {
-            selectedSize = size;
-            document.querySelectorAll('.size-btn').forEach(btn => {
-                if (btn.innerText === size) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
+    updateSizeButtons();
+    renderSizeChart();
 
-            if (currentProduct && currentProduct.measurements) {
-                const m = currentProduct.measurements[size];
-                const tbody = document.getElementById('modalSizeChartBody');
-                tbody.innerHTML = `
-                    <tr style="background: rgba(255,255,255,0.05);">
-                        <td><strong>${size}</strong></td>
-                        <td>${m.length}</td>
-                        <td>${m.width}</td>
-                        <td>${m.sleeve}</td>
-                    </tr>
-                `;
-            }
-        }
+    document.getElementById('productModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
-        function addToCartFromModal() {
-            if (!currentProduct) return;
-            cart.push({
-                name: currentProduct.name,
-                priceNum: currentProduct.priceNum,
-                price: currentProduct.price,
-                size: selectedSize
-            });
+function setMainImage(src) {
+    const img = document.getElementById('modalMainImg');
+    img.style.visibility = 'visible';
+    img.onerror = () => { img.style.visibility = 'hidden'; };
+    img.src = src;
+}
+
+function closeProductModal() {
+    document.getElementById('productModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function selectSize(size) {
+    selectedSize = size;
+    updateSizeButtons();
+    renderSizeChart();
+}
+
+function updateSizeButtons() {
+    document.querySelectorAll('#sizesContainer .size-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.trim() === selectedSize);
+    });
+}
+
+function renderSizeChart() {
+    const body = document.getElementById('modalSizeChartBody');
+    body.innerHTML = '';
+    if (!currentProduct) return;
+    Object.keys(currentProduct.measurements).forEach(size => {
+        const m = currentProduct.measurements[size];
+        const tr = document.createElement('tr');
+        if (size === selectedSize) tr.style.color = 'var(--text-color)';
+        tr.innerHTML = `<td>${size}</td><td>${m.length}</td><td>${m.width}</td><td>${m.sleeve}</td>`;
+        body.appendChild(tr);
+    });
+}
+
+function addToCartFromModal() {
+    if (!currentProduct) return;
+    cart.push({
+        name: currentProduct.name,
+        price: currentProduct.price,
+        priceNum: currentProduct.priceNum,
+        size: selectedSize
+    });
+    updateCartUI();
+    closeProductModal();
+    document.getElementById('cartDrawer').classList.add('active');
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+}
+
+function formatRub(n) {
+    return n.toLocaleString('en-US') + ' RUB';
+}
+
+function updateCartUI() {
+    document.getElementById('cartCount').textContent = cart.length;
+
+    const list = document.getElementById('cartItemsList');
+    list.innerHTML = '';
+
+    if (cart.length === 0) {
+        list.innerHTML = '<div style="color: var(--muted-color); font-size: 0.9rem;">Корзина пуста</div>';
+    } else {
+        cart.forEach((item, i) => {
+            const row = document.createElement('div');
+            row.className = 'cart-item';
+            row.innerHTML = `
+                <div class="cart-item-info">${item.name}<br><span style="color: var(--muted-color);">Размер: ${item.size} | ${item.price}</span></div>
+                <button class="cart-item-remove" onclick="removeFromCart(${i})">&times;</button>`;
+            list.appendChild(row);
+        });
+    }
+
+    const total = cart.reduce((sum, item) => sum + item.priceNum, 0);
+    document.getElementById('cartTotalPrice').textContent = formatRub(total);
+    validateOrderForm();
+}
+
+function toggleCartDrawer() {
+    document.getElementById('cartDrawer').classList.toggle('active');
+}
+
+function validateOrderForm() {
+    const btn = document.getElementById('checkoutBtn');
+    const name = document.getElementById('orderName').value.trim();
+    const contact = document.getElementById('orderContact').value.trim();
+    if (cart.length > 0 && name && contact) {
+        btn.removeAttribute('disabled');
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+    } else {
+        btn.setAttribute('disabled', 'true');
+        btn.style.opacity = '0.5';
+        btn.style.cursor = 'not-allowed';
+    }
+}
+
+function openRunesModal(key) {
+    const data = RUNES_TEXT[key];
+    if (!data) return;
+    document.getElementById('runesDescContent').innerHTML =
+        `<button class="modal-close" onclick="closeRunesModal()">&times;</button>
+         <h3>${data.title}</h3>
+         <p>${data.text}</p>`;
+    document.getElementById('runesModal').classList.add('active');
+}
+
+function closeRunesModal() {
+    document.getElementById('runesModal').classList.remove('active');
+}
+
+function checkoutTelegram() {
+    if (cart.length === 0) {
+        alert('Корзина пуста!');
+        return;
+    }
+
+    const name = document.getElementById('orderName').value.trim();
+    const contact = document.getElementById('orderContact').value.trim();
+
+    if (!name || !contact) {
+        alert('Пожалуйста, укажите ваше имя и контакт для связи!');
+        return;
+    }
+
+    let text = '⚡ Новый заказ с сайта Coelophysis:\n\n';
+    text += `👤 Имя: ${name}\n`;
+    text += `📞 Связь: ${contact}\n\n`;
+    text += '📦 Состав заказа:\n';
+
+    cart.forEach(item => {
+        text += `• ${item.name}\n  Размер: ${item.size} | ${item.price}\n\n`;
+    });
+
+    const totalText = document.getElementById('cartTotalPrice').innerText;
+    text += `💰 Итого: ${totalText}`;
+
+    const BOT_TOKEN = '8725885962:AAHtPAsEc4oNHE3wmBMRzGS9JVqeu02eUUM';
+    const CHAT_ID = '-1004345884476';
+
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: text
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Заказ успешно оформлен! Мы свяжемся с вами для подтверждения.');
+            cart = [];
+            document.getElementById('orderName').value = '';
+            document.getElementById('orderContact').value = '';
             updateCartUI();
-            closeProductModal();
             toggleCartDrawer();
+        } else {
+            alert('Ошибка отправки. Пожалуйста, напишите нам в Telegram напрямую.');
         }
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+        alert('Ошибка соединения с сервером.');
+    });
+}
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
+document.getElementById('productModal').addEventListener('click', e => {
+    if (e.target.id === 'productModal') closeProductModal();
+});
+document.getElementById('runesModal').addEventListener('click', e => {
+    if (e.target.id === 'runesModal') closeRunesModal();
+});
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        closeProductModal();
+        closeRunesModal();
+    }
+});
 
-        function updateCartUI() {
-            const cartItemsContainer = document.getElementById('cartItems');
-            const cartCount = document.getElementById('cartCount');
-            const cartTotalPrice = document.getElementById('cartTotalPrice');
-            
-            if (cartItemsContainer) {
-                cartItemsContainer.innerHTML = '';
-                let total = 0;
-                cart.forEach((item, index) => {
-                    total += item.priceNum;
-                    cartItemsContainer.innerHTML += `
-                        <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center; background:#181818; padding:10px; border:1px solid #222; font-size:0.9rem;">
-                            <span>${item.name} (${item.size}) - ${item.price}</span>
-                            <span onclick="removeFromCart(${index})" style="color:#ff5555; cursor:pointer; font-weight:bold; padding:0 5px;">[×]</span>
-                        </div>
-                    `;
-                });
-                if (cartTotalPrice) cartTotalPrice.innerText = total.toLocaleString() + ' RUB';
-            }
-            if (cartCount) cartCount.innerText = cart.length;
-        }
+updateCartUI();
 
-        function toggleCartDrawer() {
-            const drawer = document.getElementById('cartDrawer');
-            if (drawer) drawer.classList.toggle('active');
-        }
-
-        function validateOrderForm() {
-            const name = document.getElementById('orderName').value.trim();
-            const contact = document.getElementById('orderContact').value.trim();
-            const btn = document.getElementById('checkoutBtn');
-
-            if (!btn) return;
-            if (name.length > 0 && contact.length > 0) {
-                btn.removeAttribute('disabled');
-                btn.style.opacity = '1';
-                btn.style.cursor = 'pointer';
-            } else {
-                btn.setAttribute('disabled', 'true');
-                btn.style.opacity = '0.5';
-                btn.style.cursor = 'not-allowed';
-            }
-        }
-
-        function checkoutTelegram() {
-            if (cart.length === 0) {
-                alert('Корзина пуста!');
-                return;
-            }
-
-            const name = document.getElementById('orderName').value.trim();
-            const contact = document.getElementById('orderContact').value.trim();
-
-            if (!name || !contact) {
-                alert('Пожалуйста, укажите ваше имя и контакт для связи!');
-                return;
-            }
-            
-            let text = '⚡ Новый заказ с сайта Coelophysis:\n\n';
-            text += `👤 Имя: ${name}\n`;
-            text += `📞 Связь: ${contact}\n\n`;
-            text += '📦 Состав заказа:\n';
-
-            cart.forEach(item => {
-                text += `• ${item.name}\n  Размер: ${item.size} | ${item.price}\n\n`;
-            });
-            
-            const totalText = document.getElementById('cartTotalPrice').innerText;
-            text += `💰 Итого: ${totalText}`;
-
-            const BOT_TOKEN = '8725885962:AAHtPAsEc4oNHE3wmBMRzGS9JVqeu02eUUM'; 
-            const CHAT_ID = '-1004345884476';
-
-            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: text
-                })
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert('Заказ успешно оформлен! Мы свяжемся с вами для подтверждения.');
-                    cart = [];
-                    updateCartUI();
-                    toggleCartDrawer();
-                    document.getElementById('orderName').value = '';
-                    document.getElementById('orderContact').value = '';
-                    validateOrderForm();
-                } else {
-                    alert('Ошибка отправки. Пожалуйста, напишите нам в Telegram напрямую.');
-                }
-            })
-            .catch(error => {
-                console.error('Ошибка:', error);
-                alert('Ошибка соединения с сервером.');
-            });
-        }
     </script>
 </body>
 </html>
