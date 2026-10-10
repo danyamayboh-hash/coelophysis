@@ -928,12 +928,30 @@
                 return;
             }
             
-            // Шаг В: Формируем красивый текст сообщения для Telegram-беседы
-            let text = '⚡ Новый заказ с сайта Coelophysis:\n\n';
-            text += `👤 Имя: ${name}\n`;
-            text += `📞 Связь: ${contact}\n\n`;
-            text += '📦 Состав заказа:\n';
+<!-- Поля для контактов -->
+    <div style="margin: 15px 0; display: flex; flex-direction: column; gap: 10px;">
+        <input type="text" id="orderName" placeholder="Ваше имя" oninput="validateOrderForm()" style="background: #111; border: 1px solid #333; color: #fff; padding: 10px; font-family: inherit; outline: none;">
+        <input type="text" id="orderContact" placeholder="Телефон или Telegram (@username)" oninput="validateOrderForm()" style="background: #111; border: 1px solid #333; color: #fff; padding: 10px; font-family: inherit; outline: none;">
+    </div>
 
+    <!-- Кнопка изначально заблокирована -->
+    <button id="checkoutBtn" style="padding: 12px 24px; opacity: 0.5; cursor: not-allowed;" onclick="checkoutTelegram()" disabled>Оформить в Telegram</button>
+function validateOrderForm() {
+        const name = document.getElementById('orderName').value.trim();
+        const contact = document.getElementById('orderContact').value.trim();
+        const btn = document.getElementById('checkoutBtn');
+
+        // Если оба поля заполнены — активируем кнопку
+        if (name.length > 0 && contact.length > 0) {
+            btn.removeAttribute('disabled');
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+        } else {
+            btn.setAttribute('disabled', 'true');
+            btn.style.opacity = '0.5';
+            btn.style.cursor = 'not-allowed';
+        }
+    }
             cart.forEach(item => {
                 text += `• ${item.name}\n  Размер: ${item.size} | ${item.price}\n\n`;
             });
