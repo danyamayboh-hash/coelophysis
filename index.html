@@ -50,6 +50,16 @@
             gap: 20px;
             align-items: center;
         }
+        .runes-nav span {
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            margin-right: 15px;
+        }
+        .runes-nav span:hover {
+            color: #fff;
+        }
         .cart-trigger {
             cursor: pointer;
             background: var(--card-bg);
@@ -63,13 +73,43 @@
         .cart-trigger:hover {
             border-color: #555;
         }
+
+        /* Hero Video Section */
+        .hero-video-sec {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-video-sec video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .hero-content h1 {
+            font-size: 2.5rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 10px;
+        }
+
         main {
-            padding-top: 120px;
             max-width: 1400px;
             margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
-            padding-bottom: 80px;
+            padding: 40px 20px 80px 20px;
         }
         .products-grid {
             display: grid;
@@ -242,21 +282,23 @@
         }
         .add-to-cart-btn:hover { background: #e0e0e0; }
 
-        /* Cart Drawer */
+        /* Cart Drawer (Выезжает СНИЗУ) */
         .cart-drawer {
             position: fixed;
-            top: 0; right: -400px;
-            width: 400px;
-            height: 100%;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            max-height: 85vh;
             background: var(--card-bg);
-            border-left: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-color);
             z-index: 1100;
-            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
             padding: 30px;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
         }
-        .cart-drawer.active { right: 0; }
+        .cart-drawer.active { bottom: 0; }
         .cart-header {
             display: flex;
             justify-content: space-between;
@@ -274,6 +316,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            max-height: 40vh;
         }
         .cart-footer {
             border-top: 1px solid var(--border-color);
@@ -303,32 +346,31 @@
     <header>
         <div class="logo">Coelophysis</div>
         <div class="nav-right">
+            <div class="runes-nav">
+                <span>[ ABOUT ]</span>
+                <span>[ ORIGIN ]</span>
+                <span>[ ARCHIVE ]</span>
+            </div>
             <div class="cart-trigger" onclick="toggleCartDrawer()">Корзина (<span id="cartCount">0</span>)</div>
         </div>
     </header>
 
+    <!-- Секция с видео -->
+    <section class="hero-video-sec">
+        <video autoplay muted loop playsinline>
+            <source src="background.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>COELOPHYSIS</h1>
+            <p style="color: var(--text-muted);">PALEO-BRUTALISM // DROP 01</p>
+        </div>
+    </section>
+
     <main>
         <div class="products-grid">
-            <!-- Товар: Hoodie CPHS-06 // Obsidian -->
+            <!-- Товар 1 -->
             <div class="product-card" 
-                 data-name="Hoodie CPHS-06 // Obsidian" 
-                 data-price-num="9200" 
-                 data-price="9,200 RUB" 
-                 data-images="hoodie2_front.jpg,hoodie2_back.jpg" 
-                 onclick="openProductFromCard(this)">
-                <div class="product-image">
-                    <img src="hoodie2_front.jpg" alt="Hoodie 06" onerror="this.style.display='none'">
-                    <span>[ Hoodie 06 ]</span>
-                </div>
-                <div class="product-info">
-                    <span class="product-name">Hoodie CPHS-06 // Obsidian</span>
-                    <span class="product-price">9,200 RUB</span>
-                </div>
-            </div>
-
-            <!-- Товар: T-Shirt CPHS-01 Vector -->
-            <div class="product-card" 
-                 data-name="T-Shirt CPHS-01 // Vector" 
+                 data-name="T-Shirt CPHS-01 Vector" 
                  data-price-num="2700" 
                  data-price="2,700 RUB" 
                  data-images="ts1_front_v3.jpg" 
@@ -338,8 +380,59 @@
                     <span>[ T-Shirt 01 ]</span>
                 </div>
                 <div class="product-info">
-                    <span class="product-name">T-Shirt CPHS-01 // Vector</span>
+                    <span class="product-name">T-Shirt CPHS-01 Vector</span>
                     <span class="product-price">2,700 RUB</span>
+                </div>
+            </div>
+
+            <!-- Товар 2 -->
+            <div class="product-card" 
+                 data-name="Long Fossil" 
+                 data-price-num="3200" 
+                 data-price="3,200 RUB" 
+                 data-images="long_front.jpg,long_back.jpg" 
+                 onclick="openProductFromCard(this)">
+                <div class="product-image">
+                    <img src="long_front.jpg" alt="Long Fossil" onerror="this.style.display='none'">
+                    <span>[ Long Fossil ]</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-name">Long Fossil</span>
+                    <span class="product-price">3,200 RUB</span>
+                </div>
+            </div>
+
+            <!-- Товар 3 -->
+            <div class="product-card" 
+                 data-name="Hoodie Obsidian" 
+                 data-price-num="8900" 
+                 data-price="8,900 RUB" 
+                 data-images="hoodie2_front.jpg,hoodie2_back.jpg" 
+                 onclick="openProductFromCard(this)">
+                <div class="product-image">
+                    <img src="hoodie2_front.jpg" alt="Hoodie Obsidian" onerror="this.style.display='none'">
+                    <span>[ Hoodie Obsidian ]</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-name">Hoodie Obsidian</span>
+                    <span class="product-price">8,900 RUB</span>
+                </div>
+            </div>
+
+            <!-- Товар 4 -->
+            <div class="product-card" 
+                 data-name="Zip-Hoodie Terminal" 
+                 data-price-num="10500" 
+                 data-price="10,500 RUB" 
+                 data-images="zip1_front.jpg,zip1_back.jpg" 
+                 onclick="openProductFromCard(this)">
+                <div class="product-image">
+                    <img src="zip1_front.jpg" alt="Zip-Hoodie Terminal" onerror="this.style.display='none'">
+                    <span>[ Zip-Hoodie Terminal ]</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-name">Zip-Hoodie Terminal</span>
+                    <span class="product-price">10,500 RUB</span>
                 </div>
             </div>
         </div>
@@ -382,7 +475,7 @@
         </div>
     </div>
 
-    <!-- Выезжающая корзина -->
+    <!-- Выезжающая корзина (снизу) -->
     <div id="cartDrawer" class="cart-drawer">
         <div class="cart-header">
             <span>Корзина</span>
