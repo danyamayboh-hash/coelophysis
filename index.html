@@ -790,7 +790,10 @@
         <div class="cart-items-list" id="cartItemsList"></div>
         <div class="cart-drawer-footer">
             <span class="cart-total-text">Итого: <span id="cartTotalPrice">0 RUB</span></span>
-            <button class="action-btn" style="margin-top:0; padding: 12px 24px;" onclick="checkoutTelegram()">Оформить в Telegram</button>
+            <button class="action-btn" style="margin-top:0; padding: 12px 24px;" onclick="checkoutTelegram()"<!-- Поля для контактов покупателя -->
+    <div style="margin: 15px 0; display: flex; flex-direction: column; gap: 10px;">
+        <input type="text" id="orderName" placeholder="Ваше имя" style="background: #111; border: 1px solid #333; color: #fff; padding: 10px; font-family: inherit; outline: none;">
+        <input type="text" id="orderContact" placeholder="Телефон или Telegram (@username)" style="background: #111; border: 1px solid #333; color: #fff; padding: 10px; font-family: inherit; outline: none;">Оформить в Telegram</button>
         </div>
     </div>
 
