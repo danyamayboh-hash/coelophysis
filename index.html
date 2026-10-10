@@ -900,14 +900,41 @@
                 alert('Корзина пуста!');
                 return;
             }
-            let text = 'Здравствуйте! Хочу оформить заказ:\n';
+            
+            let text = '⚡ Новый заказ с сайта Coelophysis:\n\n';
             cart.forEach(item => {
-                text += `- ${item.name} (Размер: ${item.size}) — ${item.price}\n`;
+                text += `• ${item.name}\n  Размер: ${item.size} | ${item.price}\n\n`;
             });
             const totalText = document.getElementById('cartTotalPrice').innerText;
-            text += `Итого: ${totalText}`;
-            
-            window.open(`https://t.me/cphsshop?text=${encodeURIComponent(text)}`, '_blank');
+            text += `💰 Итого: ${totalText}`;
+
+            // 1. Вставь сюда токен своего бота от @BotFather
+            const BOT_TOKEN = 'ТВОЙ_ТОКЕН_БОТА'; 
+            // 2. Вставь сюда ID твоей беседы или личный ID (куда должны падать заказы)
+            const CHAT_ID = 'ID_БЕСЕДЫ';
+
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: text
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Заказ успешно оформлен! Мы свяжемся с вами для подтверждения.');
+                    cart = [];
+                    updateCartUI();
+                    toggleCartDrawer();
+                } else {
+                    alert('Ошибка отправки. Пожалуйста, напишите нам в Telegram напрямую.');
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Ошибка соединения с сервером.');
+            });
         }
 
 const runesInfo = {
