@@ -941,17 +941,6 @@ function validateOrderForm() {
         const contact = document.getElementById('orderContact').value.trim();
         const btn = document.getElementById('checkoutBtn');
 
-        // Если оба поля заполнены — активируем кнопку
-        if (name.length > 0 && contact.length > 0) {
-            btn.removeAttribute('disabled');
-            btn.style.opacity = '1';
-            btn.style.cursor = 'pointer';
-        } else {
-            btn.setAttribute('disabled', 'true');
-            btn.style.opacity = '0.5';
-            btn.style.cursor = 'not-allowed';
-        }
-    }
             cart.forEach(item => {
                 text += `• ${item.name}\n  Размер: ${item.size} | ${item.price}\n\n`;
             });
