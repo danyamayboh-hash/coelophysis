@@ -803,122 +803,7 @@
         </div>
     </div>
 
-    <script>
-        let currentProduct = null;
-        let selectedSize = 'M';
-        let cart = [];
-
-        function openProductModal(product) {
-            currentProduct = product;
-            document.getElementById('modalTitle').innerText = product.name;
-            document.getElementById('modalPrice').innerText = product.price;
-            
-            const mainImg = document.getElementById('modalMainImg');
-            const thumbsContainer = document.getElementById('modalThumbs');
-            mainImg.src = product.images[0];
-            thumbsContainer.innerHTML = '';
-            
-            product.images.forEach((imgSrc, index) => {
-                const thumb = document.createElement('img');
-                thumb.src = imgSrc;
-                thumb.className = `modal-thumb ${index === 0 ? 'active' : ''}`;
-                thumb.onclick = () => {
-                    mainImg.src = imgSrc;
-                    document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
-                    thumb.classList.add('active');
-                };
-                thumbsContainer.appendChild(thumb);
-            });
-
-            selectSize('M');
-            document.getElementById('productModal').classList.add('active');
-        }
-
-        function closeProductModal() {
-            document.getElementById('productModal').classList.remove('active');
-        }
-
-        function selectSize(size) {
-            selectedSize = size;
-            document.querySelectorAll('.size-btn').forEach(btn => {
-                if (btn.innerText === size) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-
-            if (currentProduct && currentProduct.measurements) {
-                const m = currentProduct.measurements[size];
-                const tbody = document.getElementById('modalSizeChartBody');
-                tbody.innerHTML = `
-                    <tr style="background: rgba(255,255,255,0.05);">
-                        <td><strong>${size}</strong></td>
-                        <td>${m.length}</td>
-                        <td>${m.width}</td>
-                        <td>${m.sleeve}</td>
-                    </tr>
-                `;
-            }
-        }
-
-        function addToCartFromModal() {
-            if (!currentProduct) return;
-            cart.push({
-                name: currentProduct.name,
-                priceNum: currentProduct.priceNum,
-                price: currentProduct.price,
-                size: selectedSize
-            });
-            updateCartUI();
-            closeProductModal();
-            toggleCartDrawer();
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            document.getElementById('cartCount').innerText = cart.length;
-            const list = document.getElementById('cartItemsList');
-            list.innerHTML = '';
-
-            if (cart.length === 0) {
-                list.innerHTML = '<p style="color: var(--muted-color); text-align: center;">Корзина пуста</p>';
-                document.getElementById('cartTotalPrice').innerText = '0 RUB';
-                return;
-            }
-
-            let total = 0;
-            cart.forEach((item, index) => {
-                total += item.priceNum;
-                list.innerHTML += `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <strong>${item.name}</strong><br>
-                            Размер: ${item.size} | ${item.price}
-                        </div>
-                        <button class="cart-item-remove" onclick="removeFromCart(${index})">&times;</button>
-                    </div>
-                `;
-            });
-
-            document.getElementById('cartTotalPrice').innerText = total.toLocaleString() + ' RUB';
-        }
-
-        function toggleCartDrawer() {
-            document.getElementById('cartDrawer').classList.toggle('active');
-        }
-
-function validateOrderForm() {
-        const name = document.getElementById('orderName').value.trim();
-        const contact = document.getElementById('orderContact').value.trim();
-        const btn = document.getElementById('checkoutBtn');
-
-        if (name.length > 0 && contact.length > 0) {
-            btn.removeAttribute('disabled');
+    <script>btn.removeAttribute('disabled');
             btn.style.opacity = '1';
             btn.style.cursor = 'pointer';
         } else {
@@ -943,21 +828,19 @@ function validateOrderForm() {
         }
         
         let text = '⚡ Новый заказ с сайта Coelophysis:\n\n';
-        text += `👤 Имя: ${name}\n`;
-        text +=idateOrderForm() {
-        c
+        text += 👤 Имя: ${name}\n;
+        text += 📞 Связь: ${contact}\n\n;
         text += '📦 Состав заказа:\n';
 
         cart.forEach(item => {
-            text +=).value.trim();
-        const contact = document.getElementByI
+            text += • ${item.name}\n  Размер: ${item.size} | ${item.price}\n\n;
         });
         
         const totalText = document.getElementById('cartTotalPrice').innerText;
-        text +=onst contact = document.ge
+        text += 💰 Итого: ${totalText};
 
-        const BOT_TOKEN = '8725885962:AAHtPAsEc4oNHE3wmBMRzGS9JVqeu02eUUM'; 
-        const CHAT_ID = '-1004345884476';
+        const BOT_TOKEN = 'ТВОЙ_ТОКЕН_БОТА'; 
+        const CHAT_ID = 'ID_БЕСЕДЫ';
 
         fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: 'POST',
@@ -975,7 +858,7 @@ function validateOrderForm() {
                 toggleCartDrawer();
                 document.getElementById('orderName').value = '';
                 document.getElementById('orderContact').value = '';
-                validateOrderForm(); // Сбрасываем кнопку обратно
+                validateOrderForm();
             } else {
                 alert('Ошибка отправки. Пожалуйста, напишите нам в Telegram напрямую.');
             }
@@ -985,46 +868,6 @@ function validateOrderForm() {
             alert('Ошибка соединения с сервером.');
         });
     }
-
-const runesInfo = {
-    about: {
-        title: "ᚠ ABOUT // О бренде",
-        text: "Coelophysis (CPHS) — независимый streetwear-проект из Санкт-Петербурга, основанный в 2023 году. Эстетика бренда строится на стыке палео-брутализма, индустриальных мотивов, архаичных рун и технических чертежей. Мы создаем одежду с плотной посадкой и бескомпромиссным вниманием к материалам и деталям."
-    },
-    origin: {
-        title: "ᛟ ORIGIN // Исток",
-        text: "Первичная концепция бренда, фундамент эстетики и отправная точка всех визуальных и материальных решений."
-    },
-    archive: {
-        title: "ᚱ ARCHIVE // Архив",
-        text: "Каталог прошлых дропов, закрытых коллекций и концептуальных наработок, зафиксированных в цифровом пространстве."
-    },
-    system: {
-        title: "ᛋ SYSTEM // Система",
-        text: "Технические параметры, спецификации производства, стандарты качества и внутренние протоколы бренда."
-    }
-};
-
-        function openRunesModal(type) {
-            const info = runesInfo[type];
-            const content = document.getElementById('runesDescContent');
-            content.innerHTML = `
-                <button class="modal-close" onclick="closeRunesModal()">&times;</button>
-                <h3>${info.title}</h3>
-                <p>${info.text}</p>
-            `;
-            document.getElementById('runesModal').classList.add('active');
-        }
-
-        function closeRunesModal() {
-            document.getElementById('runesModal').classList.remove('active');
-        }
-
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.classList.remove('active');
-            }
-        }
-    </script>
+</script>    </script>
 </body>
 </html>
