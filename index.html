@@ -857,6 +857,27 @@
             alert('Ошибка соединения с сервером.');
         });
     }
+        function openProductFromCard(card) {
+    const name = card.getAttribute('data-name');
+    const priceNum = Number(card.getAttribute('data-price-num'));
+    const price = card.getAttribute('data-price');
+    const images = card.getAttribute('data-images').split(',');
+
+    const measurements = {
+        'S': { length: '68', width: '58', sleeve: '60' },
+        'M': { length: '70', width: '60', sleeve: '61' },
+        'L': { length: '72', width: '62', sleeve: '62' },
+        'XL': { length: '74', width: '64', sleeve: '63' }
+    };
+
+    openProductModal({
+        name: name,
+        priceNum: priceNum,
+        price: price,
+        images: images,
+        measurements: measurements
+    });
+}
    </script>
 </body>
 </html>
